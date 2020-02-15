@@ -1,0 +1,61 @@
+<div class="card w-100 shadow">
+  <div class="card-body">
+    <h5 class="card-title">Add New Product</h5>
+    <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="productName">Product name</label>
+          <input type="text"
+          class="form-control"
+          id="productName"
+          placeholder="Enter product name"
+          formControlName="name"
+          required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="imageUrl">Image url</label>
+          <input type="url"
+          class="form-control"
+          id="imageUrl"
+          placeholder="url"
+          formControlName="imageUrl"
+          required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="price">Price</label>
+          <input type="number"
+          class="form-control"
+          id="price"
+          placeholder="Enter the price"
+          formControlName="price"
+          min="0" step="1" required>
+        </div>
+        <!-- <div class="form-group col-md-4">
+          <label for="stock">Stock</label>
+          <input type="number" class="form-control" id="stock" placeholder="Total number of products" min="0"
+            max="10000" step="1" required>
+        </div> -->
+
+        <div class="form-group col-md-4">
+          <label for="category">Category</label>
+          <select class="custom-select"
+          id="category"
+          formControlName="category"
+          (change)="changeCategory($event)">
+            <option disabled>Select Category</option>
+            <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" rows="3" cols="100" formControlName="description"></textarea>
+        </div>
+
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="card mb-3">
+  <div class="card-header"><h5>Available Products</h5></div>
+  <div class="card-body table-responsive">
+    <p *ngIf="!isItems">Loading...</p>
+      <table datatable class="table table-hover table-striped" id="item-table" *ngIf="isItems">
+          <thead>
+          <tr>
+              <th>#</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Edit</th>
+              <th>Remove</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of items; let i = index;">
+            <td class="align-middle">{{ i + 1 }}</td>
+            <td class="align-middle"><img src="{{ item.imageUrl }}" class="img-thumbnail" style="width: 150px;" alt=""></td>
+            <td class="align-middle">{{ item.name }}</td>
+            <td class="align-middle">{{ item.category }}</td>
+            <td class="align-middle">{{ item.price | currency:'INR' }}</td>
+            <td class="align-middle">{{ item.description }}</td>
+            <td class="align-middle">
+              <button class="btn btn-info" (click)="editItem(item)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            </td>
+            <td class="align-middle">
+              <button class="btn btn-danger" (click)="deleteModal(item)"><i class="fa fa-times" aria-hidden="true"></i></button>
+            </td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

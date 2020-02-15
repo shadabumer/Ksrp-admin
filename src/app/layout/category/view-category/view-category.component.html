@@ -1,0 +1,29 @@
+<div class="card mb-3">
+    <div class="card-header"><h5>Available categories</h5></div>
+    <div class="card-body table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let category of categories; let i = index;">
+              <td class="align-middle">{{ i + 1 }}</td>
+              <td class="align-middle"><img src="{{ category.imageUrl }}" class="img-thumbnail" style="width: 150px;" alt=""></td>
+              <td class="align-middle">{{ category.name }}</td>
+              <td class="align-middle">
+                  <button class="btn btn-info" (click)="editCategory(category)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              </td>
+              <td class="align-middle">
+                <button class="btn btn-danger" (click)="deleteModal(category)"><i class="fa fa-times" aria-hidden="true"></i></button>
+              </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

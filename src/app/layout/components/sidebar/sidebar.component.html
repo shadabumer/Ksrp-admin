@@ -1,0 +1,66 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+  <div class="list-group">
+    <!-- Category nested menu starts here -->
+    <div class="nested-menu">
+      <a routerLink="/categories" [routerLinkActive]="['router-link-active']" class="list-group-item"
+        (click)="toggleCategories=!toggleCategories">
+        <i class="fa fa-fw fa-sitemap"></i>&nbsp;
+        <span>{{ 'Categories'  }}</span>
+      </a>
+      <li class="nested" [class.expand]="toggleCategories">
+        <ul class="submenu">
+          <li>
+            <a routerLink="/view-categories" [routerLinkActive]="['router-link-active']">
+              <i class="fa fa-eye"></i>&nbsp;
+              <span>{{ 'View Categories' }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    <!-- Category nested menu ends here -->
+
+    <!-- Manage Items nested menu starts here -->
+    <div class="nested-menu">
+      <a routerLink="/manage-items" [routerLinkActive]="['router-link-active']" class="list-group-item"
+        (click)="toggleItems=!toggleItems">
+        <i class="fa fa-fw fa-list"></i>&nbsp;
+        <span>{{ 'Manage Items'  }}</span>
+      </a>
+      <li class="nested" [class.expand]="toggleItems">
+        <ul class="submenu">
+          <li>
+            <a routerLink="/view-items" [routerLinkActive]="['router-link-active']">
+              <i class="fa fa-eye"></i>&nbsp;
+              <span>{{ 'View Items' }}</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/update-stock" [routerLinkActive]="['router-link-active']">
+              <i class="fa fa-pencil"></i>&nbsp;
+              <span>{{ 'Update Stock' }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    <!-- Manage Items nested menu ends here -->
+
+    <a routerLink="/customer-info" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-user"></i>&nbsp;
+      <span>{{ 'Customer Info'  }}</span>
+    </a>
+    <!-- <a routerLink="/orders" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-shopping-cart"></i>&nbsp;
+      <span>{{ 'Orders'  }}</span>
+    </a>
+    <a routerLink="/billing-delviery" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-truck"></i>&nbsp;
+      <span>{{ 'Billing & Delivery'  }}</span>
+    </a> -->
+  </div>
+  <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+    <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;
+    <span>{{ 'Collapse Sidebar'  }}</span>
+  </div>
+</nav>
