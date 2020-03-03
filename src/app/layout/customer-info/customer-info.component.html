@@ -27,11 +27,16 @@
                 [ngbPopover]="address" 
                 popoverTitle="Address">view</button>
                 <ng-template #address>
-                    <p><small>House No: {{ currentAddress.houseNo}}</small></p>
-                    <p><small>Building Name: {{ currentAddress.buildingName }}</small></p>
-                    <p><small>Area details: {{ "currentAddress.areaDetails" }}</small></p>
-                    <p><small>City: {{ currentAddress.city }}</small></p>
-                    <p><small>Pincode: {{ currentAddress.pincode }}</small></p>
+                    <div *ngIf="currentAddress">
+                      <p><small>House No: {{ currentAddress.houseNo}}</small></p>
+                      <p><small>Building Name: {{ currentAddress.buildingName }}</small></p>
+                      <p><small>Area details: {{ currentAddress.areaDetails }}</small></p>
+                      <p><small>City: {{ currentAddress.city }}</small></p>
+                      <p><small>Pincode: {{ currentAddress.pincode }}</small></p>
+                    </div>
+                    <div *ngIf="!currentAddress">
+                      <p>Address is not available</p>
+                    </div>
                 </ng-template>
               </td>
               <td class="align-middle">

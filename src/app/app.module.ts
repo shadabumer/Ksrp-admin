@@ -22,6 +22,10 @@ import { EditCategoryComponent } from './layout/category/edit-category/edit-cate
 import { EditItemComponent } from './layout/manage-items/edit-item/edit-item.component';
 import { UpdateStockComponent } from './layout/manage-items/update-stock/update-stock.component';
 import { CustomerInfoComponent } from './layout/customer-info/customer-info.component';
+import { FeedbackComponent } from './layout/manage-items/feedback/feedback.component';
+import { AddStaffComponent } from './layout/manage-staff/add-staff/add-staff.component';
+import { ViewStaffComponent } from './layout/manage-staff/view-staff/view-staff.component';
+import { ManageOrdersComponent } from './layout/manage-orders/manage-orders.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { CustomerInfoComponent } from './layout/customer-info/customer-info.comp
     EditCategoryComponent,
     EditItemComponent,
     UpdateStockComponent,
-    CustomerInfoComponent
+    CustomerInfoComponent,
+    FeedbackComponent,
+    AddStaffComponent,
+    ViewStaffComponent,
+    ManageOrdersComponent
   ],
   imports: [
     BrowserModule,

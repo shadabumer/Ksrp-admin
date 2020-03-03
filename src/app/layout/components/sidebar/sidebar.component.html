@@ -50,6 +50,32 @@
       <i class="fa fa-fw fa-user"></i>&nbsp;
       <span>{{ 'Customer Info'  }}</span>
     </a>
+
+    <a routerLink="/manage-orders" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-fw fa-shopping-cart"></i>&nbsp;
+      <span>{{ 'Manage orders'  }}</span>
+    </a>
+
+    <!-- Manage Staff nested menu starts here -->
+    <div class="nested-menu">
+      <a routerLink="/add-staff" [routerLinkActive]="['router-link-active']" class="list-group-item"
+        (click)="toggleStaff=!toggleStaff">
+        <i class="fa fa-fw fa-users"></i>&nbsp;
+        <span>{{ 'Manage Staff'  }}</span>
+      </a>
+      <li class="nested" [class.expand]="toggleStaff">
+        <ul class="submenu">
+          <li>
+            <a routerLink="/view-staff" [routerLinkActive]="['router-link-active']">
+              <i class="fa fa-eye"></i>&nbsp;
+              <span>{{ 'View Staff' }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    <!-- Manage staff nested menu ends here -->
+
     <!-- <a routerLink="/orders" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <i class="fa fa-fw fa-shopping-cart"></i>&nbsp;
       <span>{{ 'Orders'  }}</span>

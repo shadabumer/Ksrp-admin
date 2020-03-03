@@ -1,0 +1,32 @@
+<div class="card mb-3">
+    <div class="card-header"><h5>Available Staffs</h5></div>
+    <div class="card-body table-responsive">
+      <p *ngIf="!isStaffsLoaded">Loading...</p>
+        <table datatable class="table table-hover table-striped" id="item-table" *ngIf="isStaffsLoaded">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Dob</th>
+                <th>Doj</th>
+                <th>Gender</th>
+                <th>Salary</th>
+                <th>Address</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let staff of staffs; let i = index;">
+              <td class="align-middle">{{ i + 1 }}</td>
+              <td class="align-middle">{{ staff.name }}</td>
+              <td class="align-middle">{{ staff.phoneNumber }}</td>
+              <td class="align-middle">{{ staff.dob }}</td>
+              <td class="align-middle">{{ staff.doj }}</td>
+              <td class="align-middle">{{ staff.gender }}</td>
+              <td class="align-middle">{{ staff.salary }}</td>
+              <td class="align-middle">{{ staff.address }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>

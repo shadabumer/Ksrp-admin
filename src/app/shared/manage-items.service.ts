@@ -7,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { map } from 'rxjs/operators';
+import { Feedback } from '../models/feedback.model';
 // import 'rxjs/add/operator/map';
 
 
@@ -56,6 +57,12 @@ export class ManageItemsService {
     return this.db.collection('stock').valueChanges();
   }
 
+  feedback(itemId: string, userId: string, feedback: Feedback) {
+    return this.db.collection('feedbacks').doc(itemId).collection('users').doc(userId).set(feedback);
+  }
 
+  getFeedback(itemId: string) {
+    return this.db.collection('feedbacks').doc(itemId).collection('users').valueChanges();
+  }
 
 }

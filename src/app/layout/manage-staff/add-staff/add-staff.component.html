@@ -1,0 +1,105 @@
+<div class="card w-100 shadow">
+    <div class="card-body">
+      <h5 class="card-title">Add New Staff</h5>
+      <form [formGroup]="staffForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="staffName">Staff name</label>
+            <input type="text"
+            class="form-control"
+            id="staffName"
+            placeholder="Enter staff name"
+            formControlName="name"
+            required>
+            <small 
+            class="text-danger" *ngIf="f.name.touched && f.name.errors?.required">
+                Name is required
+            </small>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="number"
+            class="form-control"
+            id="phoneNumber"
+            placeholder="mobile number"
+            formControlName="phoneNumber"
+            required>
+            <small 
+            class="text-danger" *ngIf="f.phoneNumber.touched && f.phoneNumber.errors?.required">
+                phone number is required
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="dob">Date of Birth</label>
+            <input type="Date"
+            class="form-control"
+            id="dob"
+            formControlName="dob"
+            required>
+            <small 
+            class="text-danger" *ngIf="f.dob.touched && f.dob.errors?.required">
+                Date of Birth is required
+            </small>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="doj">Date of Join</label>
+            <input type="Date"
+            class="form-control"
+            id="doj"
+            formControlName="doj"
+            required>
+            <small 
+            class="text-danger" *ngIf="f.doj.touched && f.doj.errors?.required">
+                Date of Join is required
+            </small>
+          </div>
+  
+          <div class="form-group col-md-4">
+            <label for="gender">Gender</label>
+            <select class="custom-select"
+            id="gender"
+            formControlName="gender">
+              <option disabled>Select Gender</option>
+              <option *ngFor="let gender of genders" [ngValue]="gender">{{ gender }}</option>
+            </select>
+            <small 
+            class="text-danger" *ngIf="f.gender.touched && f.gender.errors?.required">
+                Gender is required
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label for="salary">Salary</label>
+            <input type="number"
+            class="form-control"
+            id="salary"
+            placeholder="Enter monthly salary"
+            formControlName="salary"
+            min="1"
+            required>
+            <small 
+            class="text-danger" *ngIf="f.salary.touched && f.salary.errors?.required">
+                Salary is required
+            </small>
+          </div>
+  
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea class="form-control" 
+            id="address" 
+            rows="3" cols="100" 
+            formControlName="address"></textarea>
+            <small 
+            class="text-danger" *ngIf="f.address.touched && f.address.errors?.required">
+                Address is required
+            </small>
+          </div>
+  
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="staffForm.invalid">Submit</button>
+      </form>
+    </div>
+  </div>

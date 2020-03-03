@@ -44,6 +44,11 @@ export class ViewItemsComponent implements OnInit {
     this.router.navigate(['edit-item'], { queryParams: item })
   }
 
+  feedback(item: Item) {
+    console.log('feedback is pressed.');
+    this.router.navigate(['feedback'], { queryParams: item });
+  }
+
   deleteModal(item: Item) {
     const modalRef = this.modalService.open(ConfirmModelComponent);
     modalRef.componentInstance.deleteObject = item;

@@ -14,6 +14,7 @@ export class SidebarComponent implements OnInit {
   pushRightClass: string;
   toggleCategories: boolean = false;
   toggleItems: boolean = false;
+  toggleStaff: boolean = false;
 
   @Output() collapsedEvent = new EventEmitter<boolean>();
 

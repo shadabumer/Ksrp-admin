@@ -11,6 +11,7 @@
               <th>Category</th>
               <th>Price</th>
               <th>Description</th>
+              <th>Feedback</th>
               <th>Edit</th>
               <th>Remove</th>
           </tr>
@@ -23,6 +24,9 @@
             <td class="align-middle">{{ item.category }}</td>
             <td class="align-middle">{{ item.price | currency:'INR' }}</td>
             <td class="align-middle">{{ item.description }}</td>
+            <td class="align-middle">
+              <button class="btn btn-info" (click)="feedback(item)">View</button>
+            </td>
             <td class="align-middle">
               <button class="btn btn-info" (click)="editItem(item)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
             </td>

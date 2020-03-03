@@ -16,7 +16,7 @@ export class CustomerInfoComponent implements OnInit, OnDestroy {
   users: User[];
   isUsersLoaded: boolean = false;
   dtOptions: DataTables.Settings = {};
-  subscriptions: Subscription[];
+  subscriptions: Subscription[] = [];
   currentAddress: Address;
 
   constructor(public userService: UsersService,

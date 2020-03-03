@@ -10,6 +10,10 @@ import { EditCategoryComponent } from './layout/category/edit-category/edit-cate
 import { EditItemComponent } from './layout/manage-items/edit-item/edit-item.component';
 import { UpdateStockComponent } from './layout/manage-items/update-stock/update-stock.component';
 import { CustomerInfoComponent } from './layout/customer-info/customer-info.component';
+import { FeedbackComponent } from './layout/manage-items/feedback/feedback.component';
+import { AddStaffComponent } from './layout/manage-staff/add-staff/add-staff.component';
+import { ViewStaffComponent } from './layout/manage-staff/view-staff/view-staff.component';
+import { ManageOrdersComponent } from './layout/manage-orders/manage-orders.component';
 
 
 const routes: Routes = [
@@ -40,6 +44,10 @@ const routes: Routes = [
   { path: 'edit-item', component: EditItemComponent },
   { path: 'update-stock', component: UpdateStockComponent },
   { path: 'customer-info', component: CustomerInfoComponent },
+  { path: 'feedback', component: FeedbackComponent },
+  { path: 'add-staff', component: AddStaffComponent },
+  { path: 'view-staff', component: ViewStaffComponent },
+  { path: 'manage-orders', component: ManageOrdersComponent },
   { path: '', redirectTo: '/categories', pathMatch: 'full' }
 ];
 
