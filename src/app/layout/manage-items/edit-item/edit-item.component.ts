@@ -6,6 +6,7 @@ import { Item } from 'src/app/models/item.model';
 import { Category } from 'src/app/models/category.model';
 import { CategoryService } from 'src/app/shared/category.service';
 import { map } from 'rxjs/operators';
+import { urlValidator } from 'src/app/helpers/imageUrl.validators';
 
 @Component({
   selector: 'app-edit-item',
@@ -17,6 +18,7 @@ export class EditItemComponent implements OnInit {
   currentItem: any;
   categories: Category[];
   itemForm: FormGroup;
+  isUpdated: boolean = false;
 
   constructor(
     public route: ActivatedRoute,
@@ -48,13 +50,15 @@ export class EditItemComponent implements OnInit {
 
     // reactive form control
     this.itemForm = new FormGroup({
-      'name': new FormControl(this.currentItem.name),
-      'imageUrl': new FormControl(this.currentItem.imageUrl),
-      'categoryId': new FormControl(this.currentItem.categoryId),
-      'price': new FormControl(this.currentItem.price),
-      'description': new FormControl(this.currentItem.description),
-      'category': new FormControl(this.currentItem.category),
-      'status': new FormControl(this.currentItem.status)
+      'name': new FormControl(this.currentItem.name, [Validators.required]),
+      'imageUrl': new FormControl(this.currentItem.imageUrl, [Validators.required, urlValidator]),
+      'categoryId': new FormControl(this.currentItem.categoryId, [Validators.required]),
+      'price': new FormControl(this.currentItem.price, [Validators.required]),
+      'description': new FormControl(this.currentItem.description, [Validators.required]),
+      'category': new FormControl(this.currentItem.category, [Validators.required]),
+      'units': new FormControl(this.currentItem.units, [Validators.required]),
+      'about': new FormControl(this.currentItem.about, [Validators.required]),
+      'status': new FormControl(this.currentItem.status, [Validators.required])
     })
     this.itemForm.statusChanges.subscribe(
       (status) => console.log(status)
@@ -85,10 +89,18 @@ export class EditItemComponent implements OnInit {
       category: selectedCategory ? selectedCategory.name: this.currentItem.category,
       price: this.f.price.value,
       description: this.f.description.value,
+      units: this.f.units.value,
+      about: this.f.about.value,
       status: this.f.status.value,
       amount: 1
     }
-    this.itemService.updateItem(this.currentItem.id, newItem);
+    this.itemService.updateItem(this.currentItem.id, newItem)
+    .then(success => {
+      this.isUpdated = true;
+    })
+    .catch(error => {
+      console.log(error);
+    });
     console.log('new item:', newItem);
     console.log('category:', selectedCategory)
 

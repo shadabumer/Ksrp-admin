@@ -45,7 +45,7 @@ export class UpdateStockComponent implements OnInit, OnDestroy {
   }
 
   updateStock(id: string, stock: Stock) {
-    this.itemService.updateStock(id, stock);
+    return this.itemService.updateStock(id, stock);
   }
 
   getStock(id: string) {
@@ -56,6 +56,10 @@ export class UpdateStockComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(id: string, stockNumber: string) {
+    console.log('stock number:', stockNumber);
+    if (isNaN(parseInt(stockNumber)) || parseInt(stockNumber) <= 0) {
+      return
+    }
     let stock: Stock = {
       stock: parseInt(stockNumber)
     };

@@ -31,7 +31,9 @@
         aria-describedby="categoryName"
         placeholder="Enter name"
         formControlName="name" />
-        <!-- <small class="text-danger" *ngIf="f.name.touched && f.name.errors['required']">Name is required</small> -->
+        <small class="text-danger" *ngIf="f.name.touched && f.name.errors?.required">
+          Name is required
+        </small>
       </div>
       <div class="form-group">
         <label for="imageUrl">Image url</label>
@@ -40,10 +42,24 @@
         id="imageUrl"
         placeholder="url"
         formControlName="imageUrl" />
-        <!-- <small class="text-danger" *ngIf="f.imageUrl.touched && f.imageUrl.errors['required']">image url is required</small> -->
-
+        <p>
+          <small class="text-danger" *ngIf="f.imageUrl.touched && f.imageUrl.errors?.required">
+            image url is required
+          </small>
+        </p>
+        <p>
+          <small class="text-danger" *ngIf="f.imageUrl.touched && f.imageUrl.errors?.urlValid">
+            image url is not valid
+          </small>
+        </p>
       </div>
-      <button class="btn btn-primary" type="submit">Submit</button>
+      <button class="btn btn-primary" type="submit" 
+      [disabled]="categoryForm.invalid">
+        Submit
+      </button>
+      <p class="text-success" *ngIf="isUpdated">
+        Category updated successfully
+      </p>
     </form>
   </div>
 </div>

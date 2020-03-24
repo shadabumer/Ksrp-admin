@@ -19,7 +19,7 @@ export class ManageItemsService {
   constructor(private db: AngularFirestore) { }
 
   createItem(item: Item) {
-    this.db.collection('items').add({ ...item })
+    return this.db.collection('items').add({ ...item })
     .then(itemRef => {
       console.log('item id:', itemRef.id);
       let stock: Stock = {
@@ -38,15 +38,15 @@ export class ManageItemsService {
   }
 
   deleteItem(id: string) {
-    this.db.collection('items').doc(id).delete();
+    return this.db.collection('items').doc(id).delete();
   }
 
   updateItem(id: string, newItem: Item) {
-    this.db.collection('items').doc(id).update(newItem);
+    return this.db.collection('items').doc(id).update(newItem);
   }
 
   updateStock(id: string, stock: Stock) {
-    this.db.collection('stock').doc(id).set(stock);
+    return this.db.collection('stock').doc(id).set(stock);
   }
 
   getStock(id: string) {

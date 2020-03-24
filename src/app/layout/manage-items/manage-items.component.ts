@@ -5,6 +5,7 @@ import { CategoryService } from 'src/app/shared/category.service';
 import { map } from 'rxjs/operators';
 import { ManageItemsService } from 'src/app/shared/manage-items.service';
 import { Item } from 'src/app/models/item.model';
+import { urlValidator } from 'src/app/helpers/imageUrl.validators';
 
 @Component({
   selector: 'app-manage-items',
@@ -14,6 +15,7 @@ import { Item } from 'src/app/models/item.model';
 export class ManageItemsComponent implements OnInit {
   itemForm: FormGroup;
   categories: Category[];
+  isSubmitted: boolean = false;
 
   constructor(private categoryService: CategoryService, private itemService: ManageItemsService) { }
 
@@ -37,11 +39,13 @@ export class ManageItemsComponent implements OnInit {
 
     this.itemForm = new FormGroup({
       'name': new FormControl(null, [Validators.required]),
-      'imageUrl': new FormControl(null, [Validators.required]),
+      'imageUrl': new FormControl(null, [Validators.required, urlValidator]),
       'categoryId': new FormControl(null),
       'price': new FormControl(null, [Validators.required]),
       'description': new FormControl(null, [Validators.required]),
       'category': new FormControl(null, [Validators.required]),
+      'units': new FormControl(null, [Validators.required]),
+      'about': new FormControl(null, [Validators.required]),
       'status': new FormControl(null)
     })
     this.itemForm.statusChanges.subscribe(
@@ -71,11 +75,13 @@ export class ManageItemsComponent implements OnInit {
       category: selectedCategory.name,
       price: this.f.price.value,
       description: this.f.description.value,
+      units: this.f.units.value,
+      about: this.f.about.value,
       status: true,
       amount: 1
     }
     console.log('product:', item)
-    this.itemService.createItem(item);
+    this.itemService.createItem(item).then(success => this.isSubmitted = true);
     this.itemForm.reset();
   }
 

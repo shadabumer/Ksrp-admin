@@ -7,5 +7,7 @@ export interface Item {
   price: number,
   description: string,
   status?: boolean,
-  amount: number
+  amount: number,
+  units: string,
+  about: string,
 }

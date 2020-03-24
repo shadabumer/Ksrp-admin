@@ -22,10 +22,10 @@ export class CategoryService {
   }
 
   deleteCategory(id: string) {
-    this.db.collection('categories').doc(id).delete();
+    return this.db.collection('categories').doc(id).delete();
   }
 
   updateCategory(id: string, newCategory: Category) {
-    this.db.collection('categories').doc(id).update(newCategory);
+    return this.db.collection('categories').doc(id).update(newCategory);
   }
 }

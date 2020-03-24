@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/shared/category.service';
 import { Category } from 'src/app/models/category.model';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { urlValidator } from 'src/app/helpers/imageUrl.validators';
 
 @Component({
   selector: 'app-edit-category',
@@ -13,6 +14,7 @@ export class EditCategoryComponent implements OnInit {
 
   currentCategory: any;
   categoryForm: FormGroup;
+  isUpdated: boolean = false;
 
   constructor (
     public route: ActivatedRoute,
@@ -25,8 +27,8 @@ export class EditCategoryComponent implements OnInit {
     console.log('category:', this.currentCategory)
 
     this.categoryForm = new FormGroup({
-      'name': new FormControl(null),
-      'imageUrl': new FormControl(null)
+      'name': new FormControl(null, [Validators.required]),
+      'imageUrl': new FormControl(null, [Validators.required, urlValidator])
     })
     this.categoryForm.statusChanges.subscribe(
       (status) => console.log(status)
@@ -40,8 +42,14 @@ export class EditCategoryComponent implements OnInit {
       name: this.f.name.value ? this.f.name.value : this.currentCategory.name,
       imageUrl: this.f.imageUrl.value ? this.f.imageUrl.value : this.currentCategory.imageUrl
     };
-    this.categoryService.updateCategory(this.currentCategory.id, newCategory);
-    this.categoryForm.reset();
+    this.categoryService.updateCategory(this.currentCategory.id, newCategory)
+    .then(success => {
+      this.isUpdated = true;
+      this.categoryForm.reset();
+    })
+    .catch(error => {
+      console.log(error);
+    });
 
   }
 

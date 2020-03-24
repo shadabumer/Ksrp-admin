@@ -33,6 +33,9 @@
           id="productName"
           formControlName="name"
           required>
+          <small class="text-danger" *ngIf="f.name.touched && f.name.errors?.required">
+            Name is required
+          </small>
         </div>
         <div class="form-group col-md-6">
           <label for="imageUrl">Image url</label>
@@ -42,6 +45,16 @@
           placeholder="url"
           formControlName="imageUrl"
           >
+          <p>
+            <small class="text-danger" *ngIf="f.imageUrl.touched && f.imageUrl.errors?.required">
+              image url is required
+            </small>
+          </p>
+          <p>
+            <small class="text-danger" *ngIf="f.imageUrl.touched && f.imageUrl.errors?.urlValid">
+              image url is not valid
+            </small>
+          </p>
         </div>
       </div>
       <div class="form-row">
@@ -52,6 +65,18 @@
           id="price"
           formControlName="price"
           min="0" step="1">
+          <small class="text-danger" *ngIf="f.price.touched && f.price.errors?.required">
+            price is is required
+          </small>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="unit">Units</label>
+          <input type="text" class="form-control" id="unit" placeholder="1Kg, 500gm, 1L etc."
+           formControlName="units" required>
+          <small class="text-danger" *ngIf="f.units.touched && f.units.errors?.required">
+            units is is required
+          </small>
         </div>
 
         <div class="form-group col-md-4">
@@ -63,15 +88,33 @@
             <option disabled>Select Category</option>
             <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
           </select>
+          <small class="text-danger" *ngIf="f.category.touched && f.category.errors?.required">
+            category is is required
+          </small>
         </div>
-
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea class="form-control" id="description" rows="3" cols="100" formControlName="description"></textarea>
-        </div>
-
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" rows="3" cols="50" formControlName="description"></textarea>
+          <small class="text-danger" *ngIf="f.description.touched && f.description.errors?.required">
+            description is is required
+          </small>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="about">About Product</label>
+          <textarea class="form-control" id="about" rows="3" cols="50" formControlName="about"></textarea>
+          <small class="text-danger" *ngIf="f.about.touched && f.about.errors?.required">
+            about is is required
+          </small>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="itemForm.invalid">Submit</button>
+
+      <p class="text-success" *ngIf="isUpdated">
+        Item updated successfully
+      </p>
     </form>
   </div>
 </div>
