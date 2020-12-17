@@ -22,7 +22,7 @@
     "@angular/router": "~8.1.2",
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "angular-datatables": "^8.0.0",
-    "datatables.net": "^1.10.20",
+    "datatables.net": "^1.10.22",
     "datatables.net-dt": "^1.10.20",
     "firebase": "^7.6.0",
     "font-awesome": "^4.7.0",
